@@ -52,11 +52,28 @@ function averageEvenElementsWorker(...args) {
     
     return sumEvenElement / countEvenElement;
 }
-  function makeWork (arrOfArr, func) {
+  function makeWork(arrOfArr, func) {
+  // Инициализация переменной максимума. 
+  // Используем результат насадки от самого первого элемента, как того требует условие.
+  let maxWorkerResult = func(...arrOfArr[0]);
 
-}
-    if (countEvenElement === 0) return 0;
+  // Цикл для перебора всех элементов массива arrOfArr
+  for (let i = 0; i < arrOfArr.length; i++) {
+    const currentData = arrOfArr[i];
     
-    return sumEvenElement / countEvenElement;
+    // Передача данных в функцию-насадку с использованием spread-оператора
+    const currentResult = func(...currentData);
+
+    // Проверка: полученное значение больше текущего максимума?
+    if (currentResult > maxWorkerResult) {
+      // Если да — обновляем максимум
+      maxWorkerResult = currentResult;
+    }
+  }
+
+  // Возвращаем найденное максимальное значение
+  return maxWorkerResult;
 }
+ 
+
 
